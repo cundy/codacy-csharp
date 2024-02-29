@@ -40,6 +40,14 @@ public class TodoRepository(DatabaseContext databaseContext) : ITodoRepository
         return await _todosContext.FromSqlRaw(sql, param).ToListAsync();
     }
 
+    public async Task<List<TodoEntity>> GetAllTodosDone(bool isDone = false)
+    {
+        var param = new SqlParameter("@completed", isDone);
+        var sql = "EXECUTE [dbo].[StoredProcedureName] @completed";
+
+        return await _todosContext.FromSqlRaw(sql, param).ToListAsync();
+    }
+
     public async Task<TodoEntity?> UpdateTodo(int id, string title, bool completed)
     {
         var todo = await GetTodo(id);
