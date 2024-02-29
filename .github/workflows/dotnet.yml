@@ -26,3 +26,12 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+  publish-report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: curl
+      uses: enflo/curl-action@master
+      with:
+        curl: -Ls https://coverage.codacy.com/get.sh
