@@ -10,6 +10,8 @@ public interface ITodoRepository
 
     Task<List<TodoEntity>> GetTodosDone(bool isDone = false);
 
+    Task<List<TodoEntity>> GetAllTodosDone(bool isDone = false);
+
     Task<TodoEntity> CreateTodo(string title, bool completed);
 
     Task<TodoEntity?> UpdateTodo(int id, string title, bool completed);
